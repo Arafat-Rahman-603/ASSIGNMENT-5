@@ -155,8 +155,8 @@ const issue=data.data
 document.querySelector("#modal h2").innerText=issue.title
 document.querySelector("#modal p.text-gray-600").innerText=issue.description
 
-document.getElementById("modalAssignee").innerText=issue.assignee
-document.getElementById("modalUser").innerText=`Opened by ${issue.assignee }`
+document.getElementById("modalAssignee").innerText=issue.assignee || "Unknown"
+document.getElementById("modalUser").innerText=`Opened by ${issue.assignee || "Unknown"}`
 document.getElementById("modalDate").innerText="22/02/2026"
 
 const priority=document.getElementById("modalPriority")
