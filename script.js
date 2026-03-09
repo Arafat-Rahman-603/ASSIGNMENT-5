@@ -1,6 +1,7 @@
 const API="https://phi-lab-server.vercel.app/api/v1/lab/issues"
 
 const issuesDiv=document.getElementById("issues")
+const loader=document.getElementById("loader")
 
 let allIssues=[]
 
@@ -23,11 +24,21 @@ loadIssues()
 }
 
 async function loadIssues(){
+
+loader.classList.remove("hidden")    
+
 const res=await fetch(API)
+
 const data=await res.json()
+
 allIssues=data.data
+
 displayIssues(allIssues)
+
 updateIssueCount(allIssues)
+
+loader.classList.add("hidden")
+
 }
 
 function updateIssueCount(list){
