@@ -4,7 +4,19 @@ const issuesDiv=document.getElementById("issues")
 
 let allIssues=[]
 
+function addIssue(){
+alert("Add Issue functionality is not implemented in this demo.")
+}
+
 function login(){
+if(document.getElementById("username").value.trim()==="" || document.getElementById("password").value.trim()===""){
+        alert("Please enter username and password.")
+        return
+    }
+if(document.getElementById("username").value!=="admin" || document.getElementById("password").value!=="admin123"){
+        alert("Invalid credentials. Try admin/admin123")
+        return
+}
 document.getElementById("loginPage").classList.add("hidden")
 document.getElementById("dashboard").classList.remove("hidden")
 loadIssues()
