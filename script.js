@@ -63,10 +63,15 @@ issue.status==="open"
 : "./assets/Closed- Status .png"
 
 const labelsHTML=issue.labels.map(label=>{
+
 let style="bg-gray-100 text-gray-600"
+
 if(label==="bug") style="bg-red-100 text-red-500"
+
 if(label==="enhancement") style="bg-green-100 text-green-600"
+
 if(label==="help wanted") style="bg-yellow-100 text-yellow-600"
+
 return `<span class="${style} text-xs px-2 py-1 rounded-full font-semibold">${label.toUpperCase()}</span>`
 }).join("")
 
@@ -114,15 +119,25 @@ issuesDiv.appendChild(card)
 
 async function openIssue(id){
 const res=await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
+
 const data=await res.json()
+
 const issue=data.data
+
 document.querySelector("#modal h2").innerText=issue.title
+
 document.querySelector("#modal p.text-gray-600").innerText=issue.description
+
 document.getElementById("modalAssignee").innerText=issue.assignee || "Unknown"
+
 document.getElementById("modalUser").innerText=`Opened by ${issue.assignee || "Unknown"}`
+
 document.getElementById("modalDate").innerText=new Date(issue.createdAt).toLocaleDateString()
+
 const priority=document.getElementById("modalPriority")
+
 priority.innerText=issue.priority.toUpperCase()
+
 priority.className=`text-xs px-3 py-1 rounded-full ${
 issue.priority==="high"
 ?"bg-red-500 text-white"
@@ -141,24 +156,35 @@ updateIssueCount(allIssues)
 return
 }
 const res=await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${q}`)
+
 const data=await res.json()
+
 displayIssues(data.data)
 updateIssueCount(data.data)
 })
 
 function filterStatus(status,el){
+
 document.querySelectorAll(".tab").forEach(tab=>{
+
 tab.classList.remove("bg-purple-600","text-white")
+
 tab.classList.add("border")
+
 })
 
 el.classList.remove("border")
+
 el.classList.add("bg-purple-600","text-white")
 
 if(!status){
+
 displayIssues(allIssues)
+
 updateIssueCount(allIssues)
+
 return
+
 }
 
 const filtered=allIssues.filter(i=>i.status===status)
